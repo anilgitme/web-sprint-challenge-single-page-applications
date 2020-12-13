@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import * as yup from 'yup'
 import axios from 'axios'
@@ -16,7 +16,7 @@ const App = () => {
     ham: false,
     speciality : ''
 });
-const [subBtnEnabled, setSubBtn] = useState(false)
+// const [subBtn, setSubBtn] = useState(false)
 
 const [errors, setErrors] =  useState({
 
@@ -73,11 +73,9 @@ const subOrder = event => {
   })
 }
 
-useEffect(() => {
-  schema.isValid(order).then(() => {
-    setSubBtn(true);
-  })
-}, [order])
+// useEffect(() => {
+//   schema.isValid(order).then(valid => setSubBtn(valid))
+// }, [order])
 
   return (
     <div className='App'>
@@ -87,8 +85,10 @@ useEffect(() => {
         <Route exact path='/' component={Home}/>
         <Route path='/pizza'>
           <Form submit={subOrder} order={order} inputChange={inputChange} />
+          {/* <button id='submitBtn' onChange={inputChange} type='submit'>Place order</button> */}
         </Route>
-      </Router>
+       </Router>
+      
     </div>
   );
 };
