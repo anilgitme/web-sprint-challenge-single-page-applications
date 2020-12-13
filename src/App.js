@@ -16,7 +16,6 @@ const App = () => {
     ham: false,
     speciality : ''
 });
-// const [subBtn, setSubBtn] = useState(false)
 
 const [errors, setErrors] =  useState({
 
@@ -58,6 +57,7 @@ const subOrder = event => {
   axios.post('https://reqres.in/api/pizza', order)
   .then( data => {
     console.log(data);
+    
     setOrder({
       name: '',
       size: 'small',
@@ -65,7 +65,7 @@ const subOrder = event => {
       pepperoni: false,
       mushroom: false,
       ham: false,
-      speciality : ''
+      speciality : order.speciality
     })
   })
   .catch(error => {
@@ -73,9 +73,6 @@ const subOrder = event => {
   })
 }
 
-// useEffect(() => {
-//   schema.isValid(order).then(valid => setSubBtn(valid))
-// }, [order])
 
   return (
     <div className='App'>
@@ -85,7 +82,7 @@ const subOrder = event => {
         <Route exact path='/' component={Home}/>
         <Route path='/pizza'>
           <Form submit={subOrder} order={order} inputChange={inputChange} />
-          {/* <button id='submitBtn' onChange={inputChange} type='submit'>Place order</button> */}
+         
         </Route>
        </Router>
       

@@ -39,12 +39,12 @@ export default function Form(props) {
             </section>
             <section className='instructions'>
                 <p>Special Instructions?</p>
-                <textarea htmlFor='speciality' name='speciality' value={props.speciality}
+                <textarea htmlFor='speciality' name='speciality' id="speciality" value={props.speciality}
                 type='text' placeholder='Anything special?'>
                 </textarea>
                 {/* <input value={props.order.speciality} onChange={props.inputChange} name='speciality' type='text' id='speciality' /> */}
             </section>
-            <button>Place Order</button>
+            <button id="submit">Place Order</button>
             </form>
         </div>
     )
