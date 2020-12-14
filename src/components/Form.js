@@ -6,11 +6,10 @@ export default function Form() {
     //all slices of states
     const [subButton, setSubButton] = useState(false)
     const [order, setOrder] = useState({
-        name: '',
-        size: { small: false, medium: false, large: false },
-        toppings: { jalapenos: false, pepperoni: false, mushroom: false, ham: false },
-        speciality : ''
-    });
+        name: '', small: false, medium: false, large: false,
+        jalapenos: false, pepperoni: false, mushroom: false, ham: false,
+        speciality : '' })
+    
     
     const [errors, setErrors] =  useState({
         name: ''
@@ -23,7 +22,7 @@ export default function Form() {
 //validating the data and setting errors with yup
     const validation = event => {
         yup.reach(schema, event.target.name).validate(event.target.value)
-        .then((vali) => {
+        .then((valid) => {
             setErrors({...errors, [event.target.name]: ''})
         })
         .catch((err) => {
@@ -33,16 +32,15 @@ export default function Form() {
     
     const inputChange = event => {
       event.persist()
-      if(event.target.type === 'checkbox') {
-          setOrder({...order, toppings:{...order.toppings, [event.target.value]: event.target.checked}})
-      } else {
-          setOrder({...order, [event.target.name]: event.target.value})
-      }
-      if(event.target.name ==='name'){
-          validation(event)
-      }
-
-      
+      const info = {...order, [event.target.name]:
+        event.target.type === 'checkbox' ? event.target.checked
+       : event.target.value
+       }
+       setOrder(info)
+       
+       if(event.target.name === 'name'){
+           validation(event)
+       }
     }
     
     const subOrder = event => {
@@ -51,11 +49,9 @@ export default function Form() {
       .then( data => {
         console.log(data); //logs the response data sent to the console
         setOrder({
-            name: '',
-            size: { small: false, medium: false, large: false },
-            toppings: { jalapenos: false, pepperoni: false, mushroom: false, ham: false },
-            speciality : ''
-        })
+            name: '', small: false, medium: false, large: false,
+            jalapenos: false, pepperoni: false, mushroom: false, ham: false,
+            speciality : '' })
       })
       .catch(error => {
         console.log(error);
@@ -101,7 +97,7 @@ export default function Form() {
                 Mushroom? <input onChange={inputChange} name='mushroom' type='checkbox' id='mushroom' />
                 </label>
                 <label htmlFor='ham'>
-                Ham? <input onChange={inputChange} value='ham' name='ham' type='checkbox' id='ham' />
+                Ham? <input onChange={inputChange}  name='ham' type='checkbox' id='ham' />
                 </label>
             </section>
             <section className='instructions'>
