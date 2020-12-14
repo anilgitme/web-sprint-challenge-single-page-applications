@@ -79,10 +79,10 @@ export default function Form() {
             <section className='sizeSelect'>
                 <h3>Pizza Size?</h3>
                 <label htmlFor='size'>Size of Pizza</label>
-                <select value={order.size} onChange={inputChange} name='size' id='size'>
-                    <option defaultValue='small'>Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="Large">Large</option>
+                <select onChange={inputChange} name='size' id='size'>
+                    <option defaultValue='small pizza'>Small</option>
+                    <option value="medium pizza">Medium</option>
+                    <option value="Large pizza">Large</option>
                 </select>
             </section>
             <section className='pizzaToppings'>
